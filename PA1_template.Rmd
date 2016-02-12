@@ -3,6 +3,7 @@
 ---
 
 title: "PA1_template"
+<<<<<<< HEAD
 output: 
   md_document:
     variant: markdown_github
@@ -12,6 +13,19 @@ output:
 ## Reproducible Research:  Assessment 1 
 For this part of the assignment, calculate the total number of steps taken per day
 What is the mean total number of steps per day?
+=======
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+
+###For this part of the assignment, calculate the total number of steps taken per day
+##What is the mean total number of steps per day?
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 
 ```{r}
 
@@ -30,6 +44,7 @@ dailysteps <- summarise(activityfile2,total_steps = sum(steps))
 head(dailysteps)
 
 ```
+<<<<<<< HEAD
 
 
 ```{r}
@@ -49,6 +64,9 @@ hist(dailysteps$total_steps,main = "Total steps taken per day",
 
 
 Calculate and report the mean and median of the total number of steps taken per day
+=======
+###Calculate and report the mean and median of the total number of steps taken per day
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 
 ```{r}
 
@@ -60,11 +78,20 @@ MeanStepsPerDay
 MedianStepsPerDay
 ```
 
+<<<<<<< HEAD
 What is the average daily activity pattern?
 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the avg number of steps taken, avged across all days (y-axis)
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
+=======
+##What is the average daily activity pattern?
+##Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the avg number of steps taken, avged across all days (y-axis)
+
+##Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+
+##Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 ```{r}
 
 activityfile3 <- group_by(activity, interval)
@@ -72,6 +99,7 @@ activityfile3 <- na.omit(activityfile3)
 avgsteps_interval <- summarise(activityfile3, avg_steps = mean(steps)) 
 ```
 
+<<<<<<< HEAD
 png("plot2.png",width = 480, height = 480)
 ```{r, echo=TRUE}
 
@@ -82,13 +110,20 @@ plot(avgsteps_interval,type = 'l', col = 'brown',lwd=2,
 
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+=======
+##Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 ```{r}
 
 maxsteps <- filter(avgsteps_interval, avg_steps == max(avg_steps))
 cat(sprintf("At %sth 5min interval, the maximum number of %f steps are found on average on all days in the data set. \n", maxsteps$interval, maxsteps$avg_steps))
 ```
 
+<<<<<<< HEAD
 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+=======
+##Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 ```{r}
 
 missing_steps <- sum(is.na(activity$steps))
@@ -102,11 +137,19 @@ cat(sprintf("Total number of missing values in date field =  %s\n", missing_date
 cat(sprintf("Total number of missing values in interval field =  %s\n",missing_interval))
 ```
 
+<<<<<<< HEAD
 Develop a strategy for filling in all of the missing values in the dataset.  
 For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
 create new dataset with removed NA
+=======
+##Develop a strategy for filling in all of the missing values in the dataset.  
+##For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+##Create a new dataset that is equal to the original dataset but with the missing data filled in.
+
+#create new dataset with removed NA
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 ```{r}
 
 activityfile4<- activity
@@ -118,8 +161,13 @@ activityfile4$steps[is.na(activityfile4$steps)] <- tapply(activityfile4$steps, a
 sum(is.na(activityfile4))
 ```
 
+<<<<<<< HEAD
 Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. 
 Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+=======
+##Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. 
+##Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 ```{r}
 
 activityfile5 <- group_by(activityfile4, date)
@@ -134,6 +182,7 @@ cat(sprintf("The new mean is=  %s\n", new_mean))
 cat(sprintf("The new median is =  %s\n", new_median))
 ```
 
+<<<<<<< HEAD
 
 png("plot3.png",width = 480, height = 480)
 ```{r, echo=TRUE}
@@ -145,6 +194,9 @@ hist(dailysteps_afms$total_steps,breaks=length(dailysteps_afms$total_steps)-1,
 
 
 Are there differences in activity patterns between weekdays and weekends?
+=======
+##Are there differences in activity patterns between weekdays and weekends?
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 ```{r}
 
 activityfile6<- activityfile5
@@ -158,9 +210,40 @@ MeanStep_byIntervalByWkday <- aggregate(steps ~ interval + wk.factor, data=activ
 
 ```
 
+<<<<<<< HEAD
 
 png("plot4.png",width = 480, height = 480)
 ```{r, echo=TRUE}
+=======
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+#png("plot1.png",width = 480, height = 480)
+hist(dailysteps$total_steps,main = "Total steps taken per day",
+     xlab = "Total number of steps",col = "blue",
+     breaks= length(dailysteps$total_steps)-1,plot = TRUE)
+```
+
+
+#png("plot2.png",width = 480, height = 480)
+```{r, echo=FALSE}
+
+plot(avgsteps_interval,type = 'l', col = 'brown',lwd=2,
+     main = "Average number of steps taken across all days in 5min intervals",
+     xlab = "5min intervals",ylab = "average number of steps taken")
+```
+
+#png("plot3.png",width = 480, height = 480)
+```{r, echo=FALSE}
+
+hist(dailysteps_afms$total_steps,breaks=length(dailysteps_afms$total_steps)-1, 
+     col = 'red', main = "Histogram of total number of steps taken each day",
+     xlab = "Total number of Steps",plot = T)
+```
+
+#png("plot4.png",width = 480, height = 480)
+```{r, echo=FALSE}
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
 
 xyplot(steps ~ interval | wk.factor, data=MeanStep_byIntervalByWkday, type="l", grid=T, layout=c(1,2),
        main="Plot for comparision of number of steps on weekdays and weekends",
@@ -177,3 +260,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b1defec6ae14366cdfa385ac1ce8d947ec87431
